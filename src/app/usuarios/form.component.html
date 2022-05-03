@@ -1,0 +1,90 @@
+<!-- Lista de errores si los hubiera que envia el servidor de backend. Arreglo de String de Form.Compronent-->
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor = "let err of errores">
+  {{err}}</li>
+</ul>
+<div class="card bg-dark text-white">
+  <!-- Titulo que declaramos luego en el formulario form.components-->
+  <div class="card-header">{{titulo}}
+    <div class="card-body">
+      <!-- Directiva Submit y metodo crado en componentes-->
+      <form #usuarioForm= "ngForm">
+        <!-- Por cada conjunto de elementos tenemos un form-group y row para que sea horizontal-->
+        <div class="form-group row">
+          <!--"col-form-label" hace referencia a una clase de boostrap. col-sm-2 indica que ocupe 2 columnas de 12-->
+          <label for="nombre" class="col-form-label col-sm-2"> Nombre</label>
+          <div class="" class="col-sm-6">
+            <!-- Directiva NG Model que va rellenar con los datos del formulario al objeto usuario y sus atributos. MAPEO OBJETOS A MODELO-->
+                                                                                  <!-- Required para validar por la parte del frontend-->
+            <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name= "nombre" required minlength="4" #nombre = "ngModel">
+            <!-- Validación de que el campo este relleno y muestre mensaje. DIRTY = escribes y TOUCHED si tocas fuera-->
+            <div class="alert alert-danger" *ngIf="nombre.invalid &&(nombre.dirty || nombre.touched)"> <!-- -->
+              <div *ngIf = "nombre.errors?.['required']"> <!--Campo para los mensajes de error -->
+               El campo nombre es obligatorio
+              </div>
+              <div *ngIf = "nombre.errors?.['minlength']"> <!--Campo para los mensajes de error -->
+               El campo nombre no puede tener menos de 4 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Por cada conjunto de elementos tenemos un form-group y row para que sea horizontal-->
+        <div class="form-group row">
+          <!--"col-form-label" hace referencia a una clase de boostrap. col-sm-2 indica que ocupe 2 columnas de 12-->
+          <label for="apellido" class="col-form-label col-sm-2" >Apellido</label>
+          <div class="" class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="usuario.apellido" name= "apellido" required #apellido = "ngModel">
+            <div class="alert alert-danger" *ngIf="apellido.invalid &&(apellido.dirty || apellido.touched)"> <!-- -->
+              <div *ngIf = "apellido.errors?.['required']"> <!--Campo para los mensajes de error -->
+               El campo apellido es obligatorio
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Por cada conjunto de elementos tenemos un form-group y row para que sea horizontal-->
+        <div class="form-group row">
+          <!--"col-form-label" hace referencia a una clase de boostrap. col-sm-2 indica que ocupe 2 columnas de 12-->
+          <label for="apellido" class="col-form-label col-sm-2" >Pass</label>
+          <div class="" class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="usuario.pass" name= "pass" required #pass = "ngModel">
+            <div class="alert alert-danger" *ngIf="pass.invalid &&(pass.dirty || pass.touched)"> <!-- -->
+              <div *ngIf = "pass.errors?.['required']"> <!--Campo para los mensajes de error -->
+               El campo contraseña es obligatorio
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Por cada conjunto de elementos tenemos un form-group y row para que sea horizontal-->
+        <div class="form-group row">
+          <!--"col-form-label" hace referencia a una clase de boostrap. col-sm-2 indica que ocupe 2 columnas de 12-->
+          <label for="apellido" class="col-form-label col-sm-2" >Email</label>
+          <div class="" class="col-sm-6">
+            <input type="text" class="form-control" [(ngModel)]="usuario.correoElectronico" name= "correoElectronico" required email #email="ngModel">
+            <div class="alert alert-danger" *ngIf="email.invalid &&(email.dirty || email.touched)"> <!-- -->
+              <div *ngIf = "email.errors?.['required']"> <!--Campo para los mensajes de error -->
+               El campo email es obligatorio
+              </div>
+              <div *ngIf = "email.errors?.['email']"> <!--Campo para los mensajes de error -->
+               El campo email no tiene un formato válido
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Boton CRUD Crear -->
+        <div class="form-group row">
+          <div class="col-sm-6">                            <!-- Condicion. Si no existe lo creamos y sino lo modificamos. MISMO FORMULARIO != FUNCION-->
+            <button class= "btn btn-primary" role="button" (click)= 'create()' *ngIf="!usuario.idUsuario else elseBlock" [disabled]= "!usuarioForm.form.valid">Crear Usuario</button>
+            <ng-template #elseBlock>
+              <button class= "btn btn-primary" role="button" (click) = 'update()' [disabled]= "!usuarioForm.form.valid" >Modificar Usuario</button>
+            </ng-template>
+
+          </div>
+        </div>
+
+      </form>
+        </div>
+    </div>
+  </div>

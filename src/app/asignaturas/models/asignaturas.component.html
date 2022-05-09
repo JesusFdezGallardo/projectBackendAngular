@@ -1,0 +1,26 @@
+<div class="card text-black">
+  <div class="card-header">Asignaturas</div>
+  <div class="card-body">
+    <h5 class="card-title">Listado de Asignaturas</h5>
+    <!-- Creamos boton con la url -->
+    <!-- Comprobamos que la tabla venga con datos o muestre mensaje-->
+    <div *ngIf="asignaturas?.length == 0" class="alert alert-info">
+    No hay registros en la Base de Datos!
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="asignaturas?.length>0">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asignatura of asignaturas">
+        <td>{{asignatura.id}}</td>
+        <td>{{asignatura.nombre}}</td>
+        <td>{{usuario.profesor}}</td>
+        <td> 
+      </tbody>
+    </table>
+  </div>
+</div>

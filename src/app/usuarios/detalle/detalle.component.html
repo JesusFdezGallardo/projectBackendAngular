@@ -1,0 +1,46 @@
+<div class="card text-black">
+  <!-- Titulo que declaramos luego en el formulario form.components-->
+  <div class="card-header">
+    <div class="card-body">
+      <h5 class="card-title">Listado de Asignaturas Matriculado</h5>
+      <!-- Mostrar detalles del usuario -->
+      <div class="container"> <!-- Contenedor -->
+        <div class="row"> <!-- Fila -->
+          <div class="col-sm"><!--Columna -->
+            <ul *ngIf= "usuarios" class="list-group">
+              <li class="list-group-item active"> {{usuarios.rol.nombre}}</li>
+              <li class="list-group-item"> {{usuarios.nombre}}  {{usuarios.apellido}}</li>
+            </ul>
+          </div>
+        </div> <!-- Fin fila -->
+
+        <div class="alert alert-info my-4" *ngIf="usuarios.asignaturas.length==0">
+          ¡Este usuario no tiene asignada ninguna asignatura!
+        </div>
+
+        <div class="row">
+          <table class ="table table-bordered table-striped my -4"
+          *ngIf="usuarios.asignaturas.length>0">
+            <thead>
+              <tr> <!-- Nombre de columnas -->
+                <th>Nombre Asignatura</th>
+                <th>Profesor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let asignatura of usuarios.asignaturas">
+                <td>{{asignatura.nombre}}</td>
+                <td>{{asignatura.profesor.nombre}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+<!-- Input para subir fotos, no utilizado de momento
+      <div class="input-group">
+        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Prueba</button>
+      </div>
+-->
+    </div>
+  </div>

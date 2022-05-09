@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Usuario} from './usuario';
-import {map, Observable, throwError} from 'rxjs'; //Observable para notificar lectura o carga de datos
+import {Rol} from './rol';
+import {Observable, throwError} from 'rxjs'; //Observable para notificar lectura o carga de datos
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 //Detecta errores
-import {catchError} from 'rxjs/operators';
+import {map, catchError, tap} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {Router } from '@angular/router';
 
@@ -17,16 +18,24 @@ export class UsuarioService {
 
   constructor(private http:HttpClient, private router: Router) { }
 
-  getUsuarios(): Observable<Usuario[]>{
+  getUsuarios(): Observable<any>{
     //Convertimos flujo Observable a partir de los objetos Usuario
-    return this.http.get<Usuario[]>(this.urlEndPoint); //Una forma de hacerlo
-    /*return this.http.get<Usuario[]>(this.urlEndPoint).pipe (
+    //return this.http.get<Usuario[]>(this.urlEndPoint); //Una forma de hacerlo
+    return this.http.get<Usuario[]>(this.urlEndPoint).pipe ()
+      //Operador tap para tomar los datos y usarlos pero sin modificarlos
+      /*tap(response => {
+        let usuarios = response as Usuario[];
+        response.forEach(usuario =>{
+          console.log(usuario.nombre)
+        })
+      }),*/
+      /* Modificar usuario para que aparezca nombre con mayusculas
       map(response => {
         let usuarios = response as Usuario[];
         return usuarios.map(usuario => {
           usuario.nombre = usuario.nombre.toUpperCase();
           return usuario
-        });}))*/ //Cambiar a mayusculas todo el nombre
+        });})) //Cambiar a mayusculas todo el nombre */
       };
 
   create(usuario: Usuario) : Observable<any>{
@@ -59,8 +68,8 @@ export class UsuarioService {
   );
   }
 
-  update(usuario: Usuario): Observable<Usuario>{
-    return this.http.put<Usuario>(`${this.urlEndPoint}/${usuario.idUsuario}`, usuario, {headers: this.httpHeaders}).pipe(
+  update(usuario: Usuario): Observable<any>{
+    return this.http.put<any>(`${this.urlEndPoint}/${usuario.idUsuario}`, usuario, {headers: this.httpHeaders}).pipe(
       catchError(e => {
         if (e.status==400){
           return throwError(e);
@@ -82,4 +91,9 @@ export class UsuarioService {
       })
     )
   }
+
+  getRol(): Observable<Rol[]>{
+    return this.http.get<Rol[]>(this.urlEndPoint+ '/roles');
+  }
+
 }

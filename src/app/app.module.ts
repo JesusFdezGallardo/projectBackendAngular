@@ -12,6 +12,9 @@ import { FormComponent } from './usuarios/form.component';
 //Importacion forms modulos
 import {FormsModule} from '@angular/forms';
 import { DetalleComponent } from './usuarios/detalle/detalle.component';
+import { PracticasComponent } from './practicas/practicas.component';
+import { AsignaturaComponent } from './asignaturas/asignatura.component';
+import {AsignaturaService} from './asignaturas/services/asignatura.service';
 
 //Constante con el arreglo de las rutas
 const routes: Routes = [
@@ -22,6 +25,8 @@ const routes: Routes = [
   {path: 'usuarios/form', component: FormComponent}, //Mapeo con el componente formulario creado
   {path: 'usuarios/form/:id', component: FormComponent},
   {path: 'usuarios/ver/:id', component: DetalleComponent},
+  {path: 'asignaturas', component: AsignaturaComponent},
+  {path: 'asignaturas/:id', component: AsignaturaComponent},
 ];
 
 @NgModule({
@@ -32,6 +37,8 @@ const routes: Routes = [
     UsuariosComponent,
     FormComponent,
     DetalleComponent,
+    PracticasComponent,
+    AsignaturaComponent,
   ],
   imports: [
     //CARGAR CONFIGURACION DE LA BD
@@ -41,7 +48,7 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule
   ],
-  providers: [UsuarioService],//Cargamos clases de servicio
+  providers: [UsuarioService, AsignaturaService],//Cargamos clases de servicio
   bootstrap: [AppComponent]
 })
 export class AppModule { }

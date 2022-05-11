@@ -11,33 +11,36 @@
     <div *ngIf="usuarios?.length == 0" class="alert alert-info">
     No hay registros en la Base de Datos!
     </div>
-<table class="table table-bordered table-striped" *ngIf="usuarios?.length>0">
+<table class="table table-bordered table-striped text-center" *ngIf="usuarios?.length>0">
 <thead>
   <tr>
-    <th>Id</th>
+    <th>Detalles</th>
     <th>Nombre</th>
     <th>Apellido</th>
     <!--<th>Pass</th>-->
     <th>Email</th>
     <th>Rol</th>
-    <th>Editar</th>
-    <th>Eliminar</th>
+    <th>Operaciones</th>
+    <!-- <th>Eliminar</th> -->
   </tr>
 </thead>
 <tbody>
   <tr *ngFor="let usuario of usuarios">
-  <td type="button" [routerLink]= "['/usuarios/ver', usuario.idUsuario]" class= "glyphicon glyphicon-align-right"> {{usuario.idUsuario}} </td>
+    <td type="button" >
+      <button [routerLink]= "['/usuarios/ver', usuario.idUsuario]" class= "btn btn-info">Detalles</button>
+    </td>
     <td>{{usuario.nombre}}</td>
     <td>{{usuario.apellido}}</td>
     <!--<td>{{usuario.pass}}</td>-->
     <td>{{usuario.correoElectronico}}</td>
     <td>{{usuario.rol.nombre}}</td>
     <td>                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
-      <button class=" btn btn-primary btn-sm" type="button" name="editar" [routerLink]= "['/usuarios/form', usuario.idUsuario]">Editar</button>
-    </td>
-    <td>
+      <button class=" btn btn-primary btn-sm mx-2 " type="button" name="editar" [routerLink]= "['/usuarios/form', usuario.idUsuario]">Editar</button>
       <button class=" btn btn-danger btn-sm" type="button" name="eliminar" (click) = "delete(usuario)">Eliminar</button>
     </td>
+  <!--  <td>
+      <button class=" btn btn-danger btn-sm" type="button" name="eliminar" (click) = "delete(usuario)">Eliminar</button>
+    </td> -->
 </tbody>
 </table>
   </div>

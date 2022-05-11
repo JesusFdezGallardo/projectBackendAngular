@@ -24,13 +24,14 @@
             <thead>
               <tr> <!-- Nombre de columnas -->
                 <th>Nombre Asignatura</th>
-                <th>Profesor</th>
+                <th>Detalle</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let asignatura of usuarios.asignaturas">
                 <td>{{asignatura.nombre}}</td>
-                <td>{{asignatura.profesor.nombre}}</td>
+                <td><button clas= "btn btn-primary btn-sm" type="button"
+                  [routerLink]= "['/asignaturas', asignatura.idAsignatura]">Ver</button></td>
               </tr>
             </tbody>
           </table>

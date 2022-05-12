@@ -15,6 +15,7 @@ import { DetalleComponent } from './usuarios/detalle/detalle.component';
 import { PracticasComponent } from './practicas/practicas.component';
 import { AsignaturaComponent } from './asignaturas/asignatura.component';
 import {AsignaturaService} from './asignaturas/services/asignatura.service';
+import { ListaAsignaturasComponent } from './lista-asignaturas/lista-asignaturas.component';
 
 //Constante con el arreglo de las rutas
 const routes: Routes = [
@@ -25,8 +26,9 @@ const routes: Routes = [
   {path: 'usuarios/form', component: FormComponent}, //Mapeo con el componente formulario creado
   {path: 'usuarios/form/:id', component: FormComponent},
   {path: 'usuarios/ver/:id', component: DetalleComponent},
-  {path: 'asignaturas', component: AsignaturaComponent},
+  {path: 'asignaturas', component: ListaAsignaturasComponent},
   {path: 'asignaturas/:id', component: AsignaturaComponent},
+  {path: 'asignaturas/formularioAsignatura', component: AsignaturaComponent},
 ];
 
 @NgModule({
@@ -39,6 +41,7 @@ const routes: Routes = [
     DetalleComponent,
     PracticasComponent,
     AsignaturaComponent,
+    ListaAsignaturasComponent,
   ],
   imports: [
     //CARGAR CONFIGURACION DE LA BD

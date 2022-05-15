@@ -7,7 +7,6 @@ import {ActivatedRoute} from '@angular/router';
   //Cambiamos referencia del selector
   selector: 'detalle-usuario',
   templateUrl: './detalle.component.html',
-  styleUrls: ['./detalle.component.css']
 })
 export class DetalleComponent implements OnInit {
   //Creamos clase Usuario

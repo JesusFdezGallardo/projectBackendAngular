@@ -13,6 +13,7 @@ import {Router } from '@angular/router';
 })
 export class UsuarioService {
   private urlEndPoint: string = "http://localhost:8080/api/usuarios";
+  private urlEndPointProfes: string = "http://localhost:8080/api/usuarios/profesores";
 
   public httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
@@ -96,4 +97,7 @@ export class UsuarioService {
     return this.http.get<Rol[]>(this.urlEndPoint+ '/roles');
   }
 
+  getProfesores(): Observable<any>{
+    return this.http.get<Usuario[]>(this.urlEndPointProfes).pipe ();
+  }
 }

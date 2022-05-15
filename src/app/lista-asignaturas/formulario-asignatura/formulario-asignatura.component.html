@@ -1,0 +1,42 @@
+<div class="card bg-dark text-white">
+  <div class="card-header"> Crear Asignatura
+    <div class="card-body">
+
+    <form #asignaturaForm= "ngForm">
+      <div class="form-group row">
+        <label for="" class="col-form-label col-sm-2">Nombre asignatura</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="asignatura.nombre" name= "nombre">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="createAt" class="col-form-label col-sm-2">Profesor</label>
+        <div class="col-sm-6">
+          <select class="form-control" [(ngModel)]= "asignatura.profesor" name = "rol" style="width:500px;">
+            <option [ngValue]= "undefined">---Seleccionar un profesor ---</option>
+            <!-- Recorre los distintos roles para asignar-->
+            <option *ngFor= "let profesor of profesores" [ngValue]="profesores">{{profesor.nombre}} {{profesor.apellido}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <input type="submit" (click)="create()" value="Crear Asignatura" class="btn btn-secondary">
+        </div>
+      </div>
+    </form>
+<!--
+    <form>
+      <div class="form-group row">
+        <label for="" class="col-form-label col-sm-2">Profesor</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" name="profesor" [(ngModel)]="usuario.nombre">
+        </div>
+      </div>
+    </form>
+-->
+    </div>
+  </div>
+</div>

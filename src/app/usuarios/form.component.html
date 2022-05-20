@@ -77,7 +77,7 @@
         <div class="form-group row">
           <label for="createAt" class="col-form-label col-sm-2">Rol</label>
           <div class="col-sm-6">
-            <select [compareWith]="compararRol" class="form-control" [(ngModel)]= "usuario.rol" name = "rol" style="width:500px;">
+            <select [compareWith]="compararRol" class="form-control" [(ngModel)]= "usuario.roles" name = "rol" style="width:500px;">
               <option [ngValue]= "undefined">---Seleccionar un rol ---</option>
               <!-- Recorre los distintos roles para asignar-->
               <option *ngFor= "let rol of roles" [ngValue]="rol">{{rol.nombre}}</option>

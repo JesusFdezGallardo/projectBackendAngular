@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from './usuario';
+import {Rol} from './rol';
 import {UsuarioService} from './usuario.service';
 import Swal from 'sweetalert2';
 
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
 export class UsuariosComponent implements OnInit {
 
   usuarios: Usuario[] ;
-
+  roles: Rol[];
   constructor( private  usuarioService : UsuarioService) { }
 
   ngOnInit(): void {

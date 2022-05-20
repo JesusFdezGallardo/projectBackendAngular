@@ -6,9 +6,10 @@ export class Usuario {
   idUsuario: number;
   nombre: string;
   apellido: string;
+  usuario: string;
   pass: string;
   correoElectronico: string;
-  rol: Rol;
+  roles: Array<Rol> = [];
   asignaturas : Array<Asignatura> = [];
   asignaturasProfesor: Array<Asignatura> =[]
 }

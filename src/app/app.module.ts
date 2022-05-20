@@ -1,22 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'; //Importamos clase que conecta cliente-servidor a traves de peticiones http
+import { HttpClientModule } from '@angular/common/http'; //Importamos clase que conecta cliente-servidor a traves de peticiones http
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/cabecera.component';
-import {PieComponent} from './footer/pie.component';
+import { PieComponent } from './footer/pie.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import {UsuarioService} from './usuarios/usuario.service';
 //Importa Routesmode para tener varios módulos en el proyecto
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FormComponent } from './usuarios/form.component';
 //Importacion forms modulos
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { DetalleComponent } from './usuarios/detalle/detalle.component';
 import { PracticasComponent } from './practicas/practicas.component';
 import { AsignaturaComponent } from './asignaturas/asignatura.component';
-import {AsignaturaService} from './asignaturas/services/asignatura.service';
+import { AsignaturaService } from './asignaturas/services/asignatura.service';
 import { ListaAsignaturasComponent } from './lista-asignaturas/lista-asignaturas.component';
 import { FormularioAsignaturaComponent } from './lista-asignaturas/formulario-asignatura/formulario-asignatura.component';
+import { LoginComponent } from './usuarios/login/login.component';
 
 //Constante con el arreglo de las rutas
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
   {path: 'asignaturas', component: ListaAsignaturasComponent},
   {path: 'asignaturas/form', component: FormularioAsignaturaComponent},
   {path: 'asignaturas/:id', component: AsignaturaComponent},
-
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
@@ -45,14 +46,13 @@ const routes: Routes = [
     AsignaturaComponent,
     ListaAsignaturasComponent,
     FormularioAsignaturaComponent,
+    LoginComponent,
   ],
   imports: [
-    //CARGAR CONFIGURACION DE LA BD
     BrowserModule,
-    //Cargamos rutas moduladas de angular
+    HttpClientModule,
     RouterModule.forRoot(routes),
-    FormsModule,
-    HttpClientModule
+    FormsModule
   ],
   providers: [UsuarioService, AsignaturaService],//Cargamos clases de servicio
   bootstrap: [AppComponent]

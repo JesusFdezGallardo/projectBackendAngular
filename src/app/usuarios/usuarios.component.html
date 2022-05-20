@@ -19,9 +19,8 @@
     <th>Apellido</th>
     <!--<th>Pass</th>-->
     <th>Email</th>
-    <th>Rol</th>
     <th>Operaciones</th>
-    <!-- <th>Eliminar</th> -->
+    <th>Rol</th>
   </tr>
 </thead>
 <tbody>
@@ -33,14 +32,11 @@
     <td>{{usuario.apellido}}</td>
     <!--<td>{{usuario.pass}}</td>-->
     <td>{{usuario.correoElectronico}}</td>
-    <td>{{usuario.rol.nombre}}</td>
     <td>                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
       <button class=" btn btn-primary btn-sm mx-2 " type="button" name="editar" [routerLink]= "['/usuarios/form', usuario.idUsuario]">Editar</button>
       <button class=" btn btn-danger btn-sm" type="button" name="eliminar" (click) = "delete(usuario)">Eliminar</button>
     </td>
-  <!--  <td>
-      <button class=" btn btn-danger btn-sm" type="button" name="eliminar" (click) = "delete(usuario)">Eliminar</button>
-    </td> -->
+    <td> {{usuario.roles[0].nombre}} </td>
 </tbody>
 </table>
   </div>

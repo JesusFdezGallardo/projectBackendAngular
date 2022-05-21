@@ -11,5 +11,5 @@ export class Usuario {
   correoElectronico: string;
   roles: Array<Rol> = [];
   asignaturas : Array<Asignatura> = [];
-  asignaturasProfesor: Array<Asignatura> =[]
+  asignaturasProfesor: Array<Asignatura> = []
 }

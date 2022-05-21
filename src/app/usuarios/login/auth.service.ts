@@ -55,9 +55,9 @@ export class AuthService {
   guardarUsuario(access_token: string): void {
     let payload = this.obtenerDatosToken(access_token);
     this._usuario= new Usuario();
-    this._usuario.nombre = payload.nombre;
-    this._usuario.apellido = payload.apellido;
-    this._usuario.correoElectronico = payload.email;
+    //this._usuario.nombre = payload.nombre;
+    //this._usuario.apellido = payload.apellido;
+    //this._usuario.correoElectronico = payload.email;
     this._usuario.usuario = payload.user_name;
     this._usuario.roles = payload.authorities;
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario)); //Convierte el usuario en un JSON
@@ -86,6 +86,6 @@ export class AuthService {
   logout(): void {
     this._token = null;
     this._usuario = null;
-    sessionStorage.clear(); 
+    sessionStorage.clear();
   }
 }

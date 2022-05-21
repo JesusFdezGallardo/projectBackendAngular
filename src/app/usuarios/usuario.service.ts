@@ -7,6 +7,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map, catchError, tap} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {Router } from '@angular/router';
+import {AuthService} from '../usuarios/login/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,17 @@ export class UsuarioService {
 
   public httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: Router
+            , private autheService: AuthService) { }
+
+  //Metodo para autorizar acciones
+  private agregarAuthorizationHeader(){
+    let token = this.autheService.token;
+    if(token != null){
+      return this.httpHeaders.append('Authorization', 'Bearer' +  token);
+    }
+    return this.httpHeaders;
+  };
 
   getUsuarios(): Observable<any>{
     //Convertimos flujo Observable a partir de los objetos Usuario
@@ -33,7 +44,7 @@ export class UsuarioService {
       };
 
   create(usuario: Usuario) : Observable<any>{
-    return this.http.post<any>(this.urlEndPoint, usuario, {headers: this.httpHeaders}).pipe(
+    return this.http.post<any>(this.urlEndPoint, usuario, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
         //Comprobar errores que manda el api rest. Pueden ser una cadena de errores
         if(this.isNoAutorizado(e)){
@@ -53,7 +64,7 @@ export class UsuarioService {
 
   getUsuario(idUsuario): Observable<Usuario>{
     //Para interpolar string se usan `` invertidas
-    return this.http.get<Usuario>(`${this.urlEndPoint}/${idUsuario}`).pipe(
+    return this.http.get<Usuario>(`${this.urlEndPoint}/${idUsuario}`, {headers: this.agregarAuthorizationHeader()}).pipe(
     catchError(e => {
       if(this.isNoAutorizado(e)){
         return throwError(e);
@@ -70,7 +81,7 @@ export class UsuarioService {
   }
 
   update(usuario: Usuario): Observable<any>{
-    return this.http.put<any>(`${this.urlEndPoint}/${usuario.idUsuario}`, usuario, {headers: this.httpHeaders}).pipe(
+    return this.http.put<any>(`${this.urlEndPoint}/${usuario.idUsuario}`, usuario, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
         if(this.isNoAutorizado(e)){
           return throwError(e);
@@ -87,7 +98,7 @@ export class UsuarioService {
   }
 
   delete(id:number): Observable<Usuario>{
-    return this.http.delete<Usuario>(`${this.urlEndPoint}/${id}`, {headers: this.httpHeaders}).pipe(
+    return this.http.delete<Usuario>(`${this.urlEndPoint}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
         if(this.isNoAutorizado(e)){
           return throwError(e);
@@ -100,7 +111,7 @@ export class UsuarioService {
   }
 
   getRol(): Observable<Rol[]>{
-    return this.http.get<Rol[]>(this.urlEndPoint+ '/roles').pipe(
+    return this.http.get<Rol[]>(this.urlEndPoint+ '/roles', {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
         this.isNoAutorizado(e)
         return throwError(e);

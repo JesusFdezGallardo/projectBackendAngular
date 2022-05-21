@@ -12,6 +12,8 @@ export class DetalleComponent implements OnInit {
   //Creamos clase Usuario
   titulo: string = "Detalle del Usuario";
   usuarios: Usuario;
+  rolProfesor: string = "ROLE_PROFESOR";
+  
   //Inyectamos las clases usuarioservice y activatedRoute para las rutas y poder modificar los datos del usuario
   constructor(private usuarioService: UsuarioService, private activatedRoute: ActivatedRoute) {
 

@@ -8,16 +8,16 @@
         <div class="row"> <!-- Fila -->
           <div class="col-sm"><!--Columna -->
             <ul *ngIf= "usuarios" class="list-group">
-              <li class="list-group-item active"> {{usuarios.roles}}</li>
+              <li class="list-group-item active"> {{usuarios.roles[0].nombre}}</li>
               <li class="list-group-item"> {{usuarios.nombre}}  {{usuarios.apellido}}</li>
             </ul>
           </div>
         </div> <!-- Fin fila -->
 
-        <div class="alert alert-info my-4" *ngIf="usuarios.asignaturas.length==0">
-          ¡Este usuario no tiene asignada ninguna asignatura!
+        <div class="alert alert-info my-4" *ngIf="usuarios.asignaturas.length==0 && usuarios.asignaturasProfesor.length==0">
+            !Este usuario no tiene asignada ninguna asignatura!
         </div>
-
+        <!-- TABLA ASIGNTURAS ALUMNO-->
         <div class="row">
           <table class ="table table-bordered table-striped my -4"
           *ngIf="usuarios.asignaturas.length>0">
@@ -29,6 +29,25 @@
             </thead>
             <tbody>
               <tr *ngFor="let asignatura of usuarios.asignaturas">
+                <td>{{asignatura.nombre}}</td>
+                <td><button clas= "btn btn-primary btn-sm" type="button"
+                  [routerLink]= "['/asignaturas', asignatura.idAsignatura]">Ver</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- TABLA ASIGNTURAS PROFESOR-->
+        <div class="row">
+          <table class ="table table-bordered table-striped my -4"
+          *ngIf="usuarios.asignaturasProfesor.length>0">
+            <thead>
+              <tr> <!-- Nombre de columnas -->
+                <th>Nombre Asignatura</th>
+                <th>Detalle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let asignatura of usuarios.asignaturasProfesor">
                 <td>{{asignatura.nombre}}</td>
                 <td><button clas= "btn btn-primary btn-sm" type="button"
                   [routerLink]= "['/asignaturas', asignatura.idAsignatura]">Ver</button></td>

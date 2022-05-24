@@ -16,7 +16,7 @@
           <div class="" class="col-sm-6">
             <!-- Directiva NG Model que va rellenar con los datos del formulario al objeto usuario y sus atributos. MAPEO OBJETOS A MODELO-->
                                                                                   <!-- Required para validar por la parte del frontend-->
-            <input type="text" class="form-control" [(ngModel)]="usuario.usuario" name= "nombre" required minlength="4" #nombre = "ngModel">
+            <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name= "nombre" required minlength="4" #nombre = "ngModel">
             <!-- Validación de que el campo este relleno y muestre mensaje. DIRTY = escribes y TOUCHED si tocas fuera-->
             <div class="alert alert-danger" *ngIf="nombre.invalid &&(nombre.dirty || nombre.touched)"> <!-- -->
               <div *ngIf = "nombre.errors?.['required']"> <!--Campo para los mensajes de error -->
@@ -35,7 +35,7 @@
           <div class="" class="col-sm-6">
             <!-- Directiva NG Model que va rellenar con los datos del formulario al objeto usuario y sus atributos. MAPEO OBJETOS A MODELO-->
                                                                                   <!-- Required para validar por la parte del frontend-->
-            <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name= "nombre" required minlength="4" #nombre = "ngModel">
+            <input type="text" class="form-control" [(ngModel)]="usuario.usuario" name= "nombre" required minlength="4" #nombre = "ngModel">
             <!-- Validación de que el campo este relleno y muestre mensaje. DIRTY = escribes y TOUCHED si tocas fuera-->
             <div class="alert alert-danger" *ngIf="nombre.invalid &&(nombre.dirty || nombre.touched)"> <!-- -->
               <div *ngIf = "nombre.errors?.['required']"> <!--Campo para los mensajes de error -->

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Usuario} from '../usuario';
+import {Rol} from '../rol';
 
 @Injectable({
   providedIn: 'root'
@@ -88,4 +89,13 @@ export class AuthService {
     this._usuario = null;
     sessionStorage.clear();
   }
+
+  hasRole(rol): boolean {
+    //La clase getter. Si no tiene roles, la funcion getUsuario obtiene user vacío
+    if(this.usuario.roles.includes(rol)) {
+      return true;
+    }
+    return false;
+  }
+
 }

@@ -23,6 +23,7 @@ export class ListaAsignaturasComponent implements OnInit {
     this.asignaturaService.getAsignaturas().subscribe(
       asignaturas => this.listaAsignaturas = asignaturas
     );
+    
   }
   delete(asignatura: Asignatura): void{
         Swal.fire({

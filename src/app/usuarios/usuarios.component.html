@@ -5,7 +5,7 @@
     <!-- Creamos boton con la url -->
     <div class="my-2 text-left">
                       <!-- Ruta creada en app.module hacia links o enlaces de rutas internas del proyecto-->
-    <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/usuarios/form']">Crear usuario</button>
+    <button *ngIf= "authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/usuarios/form']">Crear usuario</button>
     </div>
             <!-- Comprobamos que la tabla venga con datos o muestre mensaje-->
     <div *ngIf="usuarios?.length == 0" class="alert alert-info">
@@ -19,7 +19,7 @@
     <th>Apellido</th>
     <!--<th>Pass</th>-->
     <th>Email</th>
-    <th>Operaciones</th>
+    <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Operaciones</th>
     <th>Rol</th>
   </tr>
 </thead>
@@ -32,7 +32,7 @@
     <td>{{usuario.apellido}}</td>
     <!--<td>{{usuario.pass}}</td>-->
     <td>{{usuario.correoElectronico}}</td>
-    <td>                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
+    <td *ngIf= "authService.hasRole('ROLE_ADMIN')">                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
       <button class=" btn btn-primary btn-sm mx-2 " type="button" name="editar" [routerLink]= "['/usuarios/form', usuario.idUsuario]">Editar</button>
       <button class=" btn btn-danger btn-sm" type="button" name="eliminar" (click) = "delete(usuario)">Eliminar</button>
     </td>

@@ -15,6 +15,8 @@ export class FormularioAsignaturaComponent implements OnInit {
 
   public asignatura: Asignatura = new Asignatura();
   public profesores: Usuario[];
+  public profesor: Usuario;
+
   public errores: string[];
   private urlEndPoint: string = "http://localhost:8080/api/asignaturas";
 
@@ -26,11 +28,23 @@ export class FormularioAsignaturaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Obtenemos Asignatura por id
+    this.cargarAsignatura();
+    //Con el + convertimos a un tipo number
     this.usuarioService.getProfesores().subscribe(
-      //Argumentos del observador
       usuarios => this.profesores = usuarios
-      );
+    );
   }
+  cargarAsignatura(): void {
+    this.activatedRoute.params.subscribe(
+      params => {let id = params['asignaturaId']
+      if (id){
+        this.asignaturaService.getAsignatura(id).subscribe(
+          (asignatura) => this.asignatura = asignatura)
+        }
+      })
+  }
+
   create(): void {
     this.asignaturaService.create(this.asignatura)
     .subscribe(json => {
@@ -43,5 +57,24 @@ export class FormularioAsignaturaComponent implements OnInit {
         console.error(err.error.errors);
       }
     );
+  }
+  update(): void{
+    this.asignaturaService.update(this.asignatura)
+    .subscribe(json => {
+      this.router.navigate(['/asignaturas'])
+      Swal.fire('Actualizar Asignatura', `Asignatura ${json.nombre} actualizada con éxito!`, 'success')
+    },//Segundo atributo de subscribe, si sale mal
+      err=>{
+        this.errores = err.error.errors as string[];
+        console.error('Codigo del error desde el backend: ' + err.status);
+        console.error(err.error.errors);
+      }
+    );
+  }
+  compararProfesor(o1: Asignatura, o2: Asignatura): boolean{
+    if (o1=== undefined && o2=== undefined){
+      return true;
+    }
+    return o1 === null || o2 === null || o1 === undefined || o2 === undefined ? false: o1.nombre === o2.nombre;
   }
 }

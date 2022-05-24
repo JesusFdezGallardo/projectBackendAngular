@@ -13,13 +13,22 @@
           <th>Nombre</th>
           <th>Profesor</th>
           <th>Operaciones</th>
+          <th>Detalle</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let asignatura of listaAsignaturas">
           <td>{{asignatura.nombre}}</td>
           <td>{{asignatura.profesor.nombre}}</td>
+          <!--
           <td><button type="button" name="button" class="btn btn-danger btn-sm" (click)= "delete(asignatura)">Eliminar</button></td>
+          <td><button class= "btn btn-primary btn-sm" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver Alumnos</button></td>
+          -->
+          <td>                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
+            <button class=" btn btn-primary btn-sm mx-2 " type="button" name="editar" [routerLink]= "['/asignaturas/form', asignatura.idAsignatura]">Editar</button>
+            <button type="button" name="button" class="btn btn-danger btn-sm" (click)= "delete(asignatura)">Eliminar</button>
+            <td><button class= "btn btn-primary btn-sm" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver Alumnos</button>
+          </td>
       </tbody>
     </table>
   </div>

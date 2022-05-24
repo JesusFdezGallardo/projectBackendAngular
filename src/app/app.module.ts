@@ -18,11 +18,12 @@ import { AsignaturaService } from './asignaturas/services/asignatura.service';
 import { ListaAsignaturasComponent } from './lista-asignaturas/lista-asignaturas.component';
 import { FormularioAsignaturaComponent } from './lista-asignaturas/formulario-asignatura/formulario-asignatura.component';
 import { LoginComponent } from './usuarios/login/login.component';
+import { DetalleAsignaturaComponent } from './lista-asignaturas/detalle-asignatura/detalle-asignatura.component';
 
 //Constante con el arreglo de las rutas
 const routes: Routes = [
   //Home o página principal
-  {path: '', redirectTo: '/usuarios', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   //Rutas mapeadas
   {path: 'usuarios', component: UsuariosComponent},
   {path: 'usuarios/form', component: FormComponent}, //Mapeo con el componente formulario creado
@@ -30,8 +31,10 @@ const routes: Routes = [
   {path: 'usuarios/ver/:id', component: DetalleComponent},
   {path: 'asignaturas', component: ListaAsignaturasComponent},
   {path: 'asignaturas/form', component: FormularioAsignaturaComponent},
+  {path: 'asignaturas/form/:asignaturaId', component: FormularioAsignaturaComponent},
+  {path: 'asignaturas/ver/:id', component: DetalleAsignaturaComponent},
   {path: 'asignaturas/:id', component: AsignaturaComponent},
-  { path: 'login', component: LoginComponent }
+  {path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
@@ -47,6 +50,7 @@ const routes: Routes = [
     ListaAsignaturasComponent,
     FormularioAsignaturaComponent,
     LoginComponent,
+    DetalleAsignaturaComponent,
   ],
   imports: [
     BrowserModule,

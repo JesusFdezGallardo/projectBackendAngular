@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import Swal from 'sweetalert2';
 import {UsuarioService} from '../usuarios/usuario.service';
 import {ActivatedRoute} from '@angular/router';
+import {AuthService} from '../usuarios/login/auth.service';
 
 @Component({
   selector: 'app-lista-asignaturas',
@@ -17,13 +18,14 @@ export class ListaAsignaturasComponent implements OnInit {
   asignatura: Asignatura = new Asignatura();
 
   constructor(private  asignaturaService : AsignaturaService, private usuarioService: UsuarioService,
-  private activatedRoute: ActivatedRoute) { }
+  private activatedRoute: ActivatedRoute,
+  public authService: AuthService) { }
 
   ngOnInit(): void {
     this.asignaturaService.getAsignaturas().subscribe(
       asignaturas => this.listaAsignaturas = asignaturas
     );
-    
+
   }
   delete(asignatura: Asignatura): void{
         Swal.fire({

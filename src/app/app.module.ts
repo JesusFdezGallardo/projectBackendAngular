@@ -10,7 +10,7 @@ import {UsuarioService} from './usuarios/usuario.service';
 import { RouterModule, Routes } from '@angular/router';
 import { FormComponent } from './usuarios/form.component';
 //Importacion forms modulos
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetalleComponent } from './usuarios/detalle/detalle.component';
 import { PracticasComponent } from './practicas/practicas.component';
 import { AsignaturaComponent } from './asignaturas/asignatura.component';
@@ -19,6 +19,11 @@ import { ListaAsignaturasComponent } from './lista-asignaturas/lista-asignaturas
 import { FormularioAsignaturaComponent } from './lista-asignaturas/formulario-asignatura/formulario-asignatura.component';
 import { LoginComponent } from './usuarios/login/login.component';
 import { DetalleAsignaturaComponent } from './lista-asignaturas/detalle-asignatura/detalle-asignatura.component';
+
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Constante con el arreglo de las rutas
 const routes: Routes = [
@@ -56,7 +61,9 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule, BrowserAnimationsModule,
+    ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule
+
   ],
   providers: [UsuarioService, AsignaturaService],//Cargamos clases de servicio
   bootstrap: [AppComponent]

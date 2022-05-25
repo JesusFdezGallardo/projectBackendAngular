@@ -16,19 +16,18 @@ export class UsuarioService {
   private urlEndPoint: string = "http://localhost:8080/api/usuarios";
   private urlEndPointProfes: string = "http://localhost:8080/api/usuarios/profesores";
   private urlEndpointAlumnos: string = "http://localhost:8080/api/usuarios/alumnos";
+  private urlEndPointFiltrar: string = "http://localhost:8080/api/usuarios/filtrar-usuarios";
 
   public isNoAutorizado(e): boolean{
     if(e.status==401){
       this.router.navigate(['/login'])
       return true;
     }
-
     if(e.status==403){
       Swal.fire('Acceso denegado', `${this.autheService.usuario.usuario} no tienes acceso a este recurso!`, 'warning');
       this.router.navigate(['/usuarios'])
       return true;
     }
-
     return false;
   }
 
@@ -128,10 +127,15 @@ export class UsuarioService {
   }
 
   getProfesores(): Observable<any>{
-    return this.http.get<Usuario[]>(this.urlEndPointProfes, {headers: this.agregarAuthorizationHeader()}).pipe ();
+    return this.http.get<Usuario[]>(this.urlEndPointProfes, {headers: this.agregarAuthorizationHeader()}).pipe();
   }
 
   getAlumnos(): Observable<any>{
-    return this.http.get<Usuario[]>(this.urlEndpointAlumnos, {headers: this.agregarAuthorizationHeader()}).pipe ();
+    return this.http.get<Usuario[]>(this.urlEndpointAlumnos, {headers: this.agregarAuthorizationHeader()}).pipe();
   }
+
+  filtrarUsuarios(nombre: string): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.urlEndPointFiltrar}/${nombre}`,  {headers: this.agregarAuthorizationHeader()}).pipe();
+  }
+
 }

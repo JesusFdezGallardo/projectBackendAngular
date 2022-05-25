@@ -3,7 +3,7 @@
   <div class="card-body">
     <h5 class="card-title">Listado de Asignaturas</h5>
 
-    <div class="my-2 text-left">
+    <div *ngIf= "authService.hasRole('ROLE_ADMIN')" class="my-2 text-left">
     <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/asignaturas/form']">Crear Asignatura</button>
     </div>
 
@@ -12,7 +12,7 @@
         <tr>
           <th>Nombre</th>
           <th>Profesor</th>
-          <th>Operaciones</th>
+          <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Operaciones</th>
           <th>Detalle</th>
         </tr>
       </thead>
@@ -24,7 +24,7 @@
           <td><button type="button" name="button" class="btn btn-danger btn-sm" (click)= "delete(asignatura)">Eliminar</button></td>
           <td><button class= "btn btn-primary btn-sm" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver Alumnos</button></td>
           -->
-          <td>                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
+          <td *ngIf= "authService.hasRole('ROLE_ADMIN')">                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
             <button class=" btn btn-primary btn-sm mx-2 " type="button" name="editar" [routerLink]= "['/asignaturas/form', asignatura.idAsignatura]">Editar</button>
             <button type="button" name="button" class="btn btn-danger btn-sm" (click)= "delete(asignatura)">Eliminar</button>
             <td><button class= "btn btn-primary btn-sm" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver Alumnos</button>

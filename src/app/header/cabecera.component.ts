@@ -17,6 +17,6 @@ import {Router} from '@angular/router';
   logout():void {
     Swal.fire('Logout', `El usuario ${this.authService.usuario.usuario} ha cerrado sesión!`, 'success');
     this.authService.logout();
-    this.router.navigate(['/Login']);
+    this.router.navigate(['/login']);
   }
 }

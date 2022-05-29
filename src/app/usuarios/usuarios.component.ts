@@ -13,15 +13,20 @@ export class UsuariosComponent implements OnInit {
 
   usuarios: Usuario[] ;
   roles: Rol[];
+  alumnos: Usuario[];
   constructor( private  usuarioService : UsuarioService,
               public authService: AuthService) { }
 
   ngOnInit(): void {
     //Carga el observador
-    this.usuarioService.getUsuarios().subscribe(
+    this.usuarioService.getAlumnos().subscribe(
       //Argumentos del observador
-      usuarios => this.usuarios = usuarios
+      usuarios => this.alumnos = usuarios
       );
+      this.usuarioService.getUsuarios().subscribe(
+        //Argumentos del observador
+        usuarios => this.usuarios = usuarios
+        );
     }
     //Usamos evento click para conseguir el idUsuario
     delete(usuario: Usuario): void{

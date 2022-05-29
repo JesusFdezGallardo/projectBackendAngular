@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import {UsuarioService} from '../usuarios/usuario.service';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../usuarios/login/auth.service';
+import {Usuario} from '../usuarios/usuario';
 
 @Component({
   selector: 'app-lista-asignaturas',
@@ -16,6 +17,7 @@ export class ListaAsignaturasComponent implements OnInit {
   listaAsignaturas: Asignatura[];
   //Instancia de una asignatura para poder crearla
   asignatura: Asignatura = new Asignatura();
+  usuarioLogeado: Usuario;
 
   constructor(private  asignaturaService : AsignaturaService, private usuarioService: UsuarioService,
   private activatedRoute: ActivatedRoute,
@@ -25,7 +27,9 @@ export class ListaAsignaturasComponent implements OnInit {
     this.asignaturaService.getAsignaturas().subscribe(
       asignaturas => this.listaAsignaturas = asignaturas
     );
-
+    this.usuarioService.getUsuarioByNombre(this.authService.usuario.usuario).subscribe(
+      usuario => this.usuarioLogeado = usuario
+    );
   }
   delete(asignatura: Asignatura): void{
         Swal.fire({

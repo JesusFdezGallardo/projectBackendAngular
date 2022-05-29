@@ -21,6 +21,8 @@ export class FormularioAsignaturaComponent implements OnInit {
   public asignatura: Asignatura = new Asignatura();
   public profesores: Usuario[];
   public profesor: Usuario;
+  //Prueba
+  public alumnos: Usuario[];
   //Caracteristicas del autocomplete
   autocompleteControl = new FormControl();
   usuariosFiltrados: Observable<Usuario[]>;
@@ -46,11 +48,17 @@ export class FormularioAsignaturaComponent implements OnInit {
     this.usuarioService.getProfesores().subscribe(
       usuarios => this.profesores = usuarios
     );
+
+    this.usuarioService.getAlumnos().subscribe(
+      usuarios => this.alumnos = usuarios
+    );
+
     this.usuariosFiltrados = this.autocompleteControl.valueChanges
     .pipe(
       map(value => typeof value === 'string'? value: value.nombre), //Convertimos los datos de tipo string en un array de Observable
       flatMap(value => value ? this._filter(value): []) //Si el valor es vario, devuelve un array vacio
     );
+
   }
   cargarAsignatura(): void {
     this.activatedRoute.params.subscribe(
@@ -79,7 +87,7 @@ export class FormularioAsignaturaComponent implements OnInit {
     this.asignaturaService.update(this.asignatura)
     .subscribe(json => {
       this.router.navigate(['/asignaturas'])
-      Swal.fire('Actualizar Asignatura', `Asignatura ${json.nombre} actualizada con éxito!`, 'success')
+      Swal.fire('Actualizar Asignatura', `Asignatura actualizada con éxito!`, 'success')
     },//Segundo atributo de subscribe, si sale mal
       err=>{
         this.errores = err.error.errors as string[];
@@ -88,6 +96,7 @@ export class FormularioAsignaturaComponent implements OnInit {
       }
     );
   }
+  //Metodo para que me cargue el rol o el profesor que ya existe al editar
   compararProfesor(o1: Asignatura, o2: Asignatura): boolean{
     if (o1=== undefined && o2=== undefined){
       return true;
@@ -112,7 +121,7 @@ export class FormularioAsignaturaComponent implements OnInit {
     event.option.focus();
     event.option.deselect();
   }
-
+  //Comprobamos si el usuario ha sido seleccionado ya
   existeAlumno(id: number): boolean {
     let existe = false;
     //Foreach para comprobar si existe el usuarios

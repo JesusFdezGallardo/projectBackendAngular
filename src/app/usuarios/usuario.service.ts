@@ -17,6 +17,7 @@ export class UsuarioService {
   private urlEndPointProfes: string = "http://localhost:8080/api/usuarios/profesores";
   private urlEndpointAlumnos: string = "http://localhost:8080/api/usuarios/alumnos";
   private urlEndPointFiltrar: string = "http://localhost:8080/api/usuarios/filtrar-usuarios";
+  private urlEndPointUser: string = "http://localhost:8080/api/user";
 
   public isNoAutorizado(e): boolean{
     if(e.status==401){
@@ -138,4 +139,21 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(`${this.urlEndPointFiltrar}/${nombre}`,  {headers: this.agregarAuthorizationHeader()}).pipe();
   }
 
+  getUsuarioByNombre(usuario): Observable<Usuario>{
+    //Para interpolar string se usan `` invertidas
+    return this.http.get<Usuario>(`${this.urlEndPointUser}/${usuario}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+    catchError(e => {
+      if(this.isNoAutorizado(e)){
+        return throwError(e);
+      }
+      //redirigimos si da error a la lista de usuarios
+      this.router.navigate(['/asignaturas']);
+      //Detecta error a través del status de la respuesta que usamos en Spring
+      console.error(e.error.error);
+        Swal.fire(e.error.mensaje, e.error.error, 'error')
+      //Devolvemos respuesta en un tipo Observable
+      return throwError(e);
+    })
+  );
+  }
 }

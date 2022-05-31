@@ -1,0 +1,22 @@
+<div class="card bg-ligth" *ngIf="usuario">
+  <div class="card-header">{{usuario.nombre}}</div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped text-center">
+      <thead>
+        <tr>
+          <th>Asignatura</th>
+          <th>Titulo</th>
+          <th>Comentario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let practica of usuario.listaPracticas">
+          <td>{{asignatura.nombre}}</td>
+          <td>{{practica.titulo}}</td>
+          <td>{{practica.comentario}}</td>
+          <!-- <td><button type="button" name="button" class="btn btn-danger btn-sm" (click)= "delete(asignatura)">Eliminar</button></td>
+          <td><button class= "btn btn-primary btn-sm" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver</button></td> -->
+      </tbody>
+    </table>
+  </div>
+</div>

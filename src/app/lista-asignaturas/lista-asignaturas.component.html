@@ -42,6 +42,7 @@
           <th>Profesor</th>
           <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Operaciones</th>
           <th>Alumnos de esta asignatura</th>
+          <th>Actividades de la asignatura</th>
         </tr>
       </thead>
       <tbody>
@@ -52,6 +53,9 @@
           <td>{{asignatura.nombre}}</td>
           <td>{{asignatura.profesor.nombre}} {{asignatura.profesor.apellido}}</td>
           <td><button class= "btn btn-primary btn-sm" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver Alumnos</button>
+          <td type="button" >
+              <button [routerLink]= "['/usuarios/practicas', asignatura.idAsignatura]" class= "btn btn-secondary">Ver actividades</button>
+          </td>
       </tbody>
     </table>
   </div>

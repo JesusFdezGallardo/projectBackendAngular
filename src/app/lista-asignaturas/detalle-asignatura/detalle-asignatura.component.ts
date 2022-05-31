@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from '../../usuarios/usuario';
 import {Asignatura} from '../../asignaturas/models/asignatura';
-import {UsuarioService} from '../../usuarios/usuario.service';
 import {AsignaturaService} from '../../asignaturas/services/asignatura.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -15,8 +14,7 @@ export class DetalleAsignaturaComponent implements OnInit {
   asignatura: Asignatura;
 
 
-  constructor(private  asignaturaService : AsignaturaService, private usuarioService: UsuarioService,
-  private activatedRoute: ActivatedRoute) { }
+  constructor(private  asignaturaService : AsignaturaService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
   this.activatedRoute.paramMap.subscribe(

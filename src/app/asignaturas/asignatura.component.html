@@ -4,7 +4,6 @@
       <h4 class="card-title">
         <a [routerLink]= "['/usuarios']" class="btn btn-light btn-xs"> &laquo; volver</a>
       </h4>
-
       <ul class="list-group my-2">
         <li class="list-group-item list-group-item-primary">Datos del Profesor</li>
         <li class="list-group-item">{{asignatura.profesor.nombre}}   {{asignatura.profesor.apellido}}</li>
@@ -25,18 +24,17 @@
           <tr>
             <th>Titulo</th>
             <th>Comentario</th>
-            <th>Nota</th>
+            <!-- <th>Nota</th> -->
           </tr>
         </thead>
         <tbody>
             <tr *ngFor="let asignatura of asignatura.practicas">
               <td>{{asignatura.titulo}}</td>
               <td>{{asignatura.comentario}}</td>
-              <td>{{asignatura.nota}}</td>
+              <!-- <td>{{asignatura.nota}}</td> -->
             </tr>
         </tbody>
       </table>
-
     </div>
   </div>
 </div>

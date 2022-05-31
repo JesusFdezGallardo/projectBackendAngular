@@ -1,6 +1,7 @@
 import {Rol} from './rol';
 //Cada punto es para volver atras en un directorio
 import {Asignatura} from "../asignaturas/models/asignatura";
+import {Practica} from "../asignaturas/models/practica";
 
 export class Usuario {
   idUsuario: number;
@@ -12,4 +13,5 @@ export class Usuario {
   roles: Array<Rol> = [];
   asignaturas : Array<Asignatura> = [];
   asignaturasProfesor: Array<Asignatura> = []
+  listaPracticas: Array<Practica> = [];
 }

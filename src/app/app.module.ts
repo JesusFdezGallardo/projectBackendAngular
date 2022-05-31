@@ -12,7 +12,7 @@ import { FormComponent } from './usuarios/form.component';
 //Importacion forms modulos
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetalleComponent } from './usuarios/detalle/detalle.component';
-import { PracticasComponent } from './practicas/practicas.component';
+import { PracticasComponent } from './lista-asignaturas/practicas/practicas.component';
 import { AsignaturaComponent } from './asignaturas/asignatura.component';
 import { AsignaturaService } from './asignaturas/services/asignatura.service';
 import { ListaAsignaturasComponent } from './lista-asignaturas/lista-asignaturas.component';
@@ -34,6 +34,7 @@ const routes: Routes = [
   {path: 'usuarios/form', component: FormComponent}, //Mapeo con el componente formulario creado
   {path: 'usuarios/form/:id', component: FormComponent},
   {path: 'usuarios/ver/:id', component: DetalleComponent},
+  {path: 'usuarios/practicas/:idAsignatura', component: PracticasComponent},
   {path: 'asignaturas', component: ListaAsignaturasComponent},
   {path: 'asignaturas/form', component: FormularioAsignaturaComponent},
   {path: 'asignaturas/form/:asignaturaId', component: FormularioAsignaturaComponent},

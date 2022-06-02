@@ -1,22 +1,23 @@
+//Importaciones de los componentes que uso en esta página
 import { Component, OnInit } from '@angular/core';
 import {Usuario} from './usuario';
 import {Rol} from './rol';
 import {UsuarioService} from './usuario.service';
 import Swal from 'sweetalert2';
 import {AuthService} from '../usuarios/login/auth.service';
-
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html'
 })
 export class UsuariosComponent implements OnInit {
-
+  //Objetos que se utilizan luego en el component html
   usuarios: Usuario[] ;
   roles: Rol[];
   alumnos: Usuario[];
+  //constructor para cargar las clases
   constructor( private  usuarioService : UsuarioService,
               public authService: AuthService) { }
-
+  //Damos valor de inicio a los objetos creados antes
   ngOnInit(): void {
     //Carga el observador
     this.usuarioService.getAlumnos().subscribe(
@@ -30,6 +31,7 @@ export class UsuariosComponent implements OnInit {
     }
     //Usamos evento click para conseguir el idUsuario
     delete(usuario: Usuario): void{
+      //Librería de JavaScript para mostrar alertas y diálogos de confirmación
       Swal.fire({
           title: '¿Estás seguro?',
           text: `Borrarás a ${usuario.nombre}`,

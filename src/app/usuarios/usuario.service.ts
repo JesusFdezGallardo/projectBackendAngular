@@ -18,6 +18,7 @@ export class UsuarioService {
   private urlEndpointAlumnos: string = "http://localhost:8080/api/usuarios/alumnos";
   private urlEndPointFiltrar: string = "http://localhost:8080/api/usuarios/filtrar-usuarios";
   private urlEndPointUser: string = "http://localhost:8080/api/user";
+  private urlEndPointBorrar: string ='http://localhost:8080/api/usuarios/delete';
 
   public isNoAutorizado(e): boolean{
     if(e.status==401){
@@ -107,6 +108,19 @@ export class UsuarioService {
 
   delete(id:number): Observable<Usuario>{
     return this.http.delete<Usuario>(`${this.urlEndPoint}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError(e);
+        }
+        console.error(e.error.mensaje);
+        Swal.fire(e.error.mensaje, e.error.error, 'error')
+        return throwError(e);
+      })
+    )
+  }
+
+  desactivar(id:number): Observable<Usuario>{
+    return this.http.put<Usuario>(`${this.urlEndPointBorrar}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
         if(this.isNoAutorizado(e)){
           return throwError(e);

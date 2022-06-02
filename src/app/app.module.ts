@@ -19,7 +19,7 @@ import { ListaAsignaturasComponent } from './lista-asignaturas/lista-asignaturas
 import { FormularioAsignaturaComponent } from './lista-asignaturas/formulario-asignatura/formulario-asignatura.component';
 import { LoginComponent } from './usuarios/login/login.component';
 import { DetalleAsignaturaComponent } from './lista-asignaturas/detalle-asignatura/detalle-asignatura.component';
-
+import { AuthService } from './usuarios/login/auth.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -66,7 +66,7 @@ const routes: Routes = [
     ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule
 
   ],
-  providers: [UsuarioService, AsignaturaService],//Cargamos clases de servicio
+  providers: [UsuarioService, AsignaturaService, AuthService],//Cargamos clases de servicio
   bootstrap: [AppComponent]
 })
 export class AppModule { }

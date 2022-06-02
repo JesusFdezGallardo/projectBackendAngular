@@ -27,9 +27,11 @@ export class ListaAsignaturasComponent implements OnInit {
     this.asignaturaService.getAsignaturas().subscribe(
       asignaturas => this.listaAsignaturas = asignaturas
     );
+
     this.usuarioService.getUsuarioByNombre(this.authService.usuario.usuario).subscribe(
       usuario => this.usuarioLogeado = usuario
     );
+
   }
   delete(asignatura: Asignatura): void{
         Swal.fire({

@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Usuario} from '../usuario';
-import {Rol} from '../rol';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _usuario: Usuario;    //Guión bajo indica que es un método accesor Getter para obtener usuario y token
+  private _usuario: Usuario;//Guión bajo indica que es un método accesor Getter para obtener usuario y token
   private _token: string;
 
   constructor(private http: HttpClient) { }

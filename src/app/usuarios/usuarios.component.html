@@ -1,5 +1,4 @@
 <div class="card text-black">
-  <!-- <div class="card-header">Usuarios</div> -->
   <div class="card-header" *ngIf="authService.hasRole('ROLE_ADMIN')">
     Listado de Usuarios
   </div>
@@ -7,7 +6,6 @@
     Listado de Alumnos
   </div>
   <div class="card-body">
-    <!-- <h5 class="card-title">Listado de Usuarios</h5> -->
     <!-- Creamos boton con la url -->
     <div class="my-2 text-left">
                       <!-- Ruta creada en app.module hacia links o enlaces de rutas internas del proyecto-->
@@ -17,7 +15,6 @@
     <div *ngIf="usuarios?.length == 0" class="alert alert-info">
     No hay registros en la Base de Datos!
     </div>
-
   <!-- TABLA PARA ROL Admin y profesor -->
   <table class="table table-bordered table-striped text-center" *ngIf="usuarios?.length>0 && authService.hasRole('ROLE_ADMIN') || authService.hasRole('ROLE_PROFESOR')">
     <thead>
@@ -25,21 +22,20 @@
         <th>Detalles</th>
         <th>Nombre</th>
         <th>Apellido</th>
-        <!--<th>Pass</th>-->
+        <th>Activo</th>
         <th>Email</th>
         <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Operaciones</th>
         <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Rol</th>
       </tr>
     </thead>
     <tbody>
-
       <tr *ngFor="let usuario of usuarios">
         <td type="button" >
           <button [routerLink]= "['/usuarios/ver', usuario.idUsuario]" class= "btn btn-info">Detalles</button>
         </td>
         <td>{{usuario.nombre}}</td>
         <td>{{usuario.apellido}}</td>
-        <!--<td>{{usuario.pass}}</td>-->
+        <th>{{usuario.activo}}</th>
         <td>{{usuario.correoElectronico}}</td>
         <td *ngIf= "authService.hasRole('ROLE_ADMIN')">                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
           <button class=" btn btn-primary btn-sm mx-2 " type="button" name="editar" [routerLink]= "['/usuarios/form', usuario.idUsuario]">Editar</button>
@@ -63,7 +59,6 @@
       </tr>
     </thead>
     <tbody>
-
       <tr *ngFor="let usuario of alumnos">
         <td type="button" >
           <button [routerLink]= "['/usuarios/ver', usuario.idUsuario]" class= "btn btn-info">Detalles</button>

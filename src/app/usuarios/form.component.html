@@ -5,7 +5,7 @@
 </ul>
 <div class="card bg-dark text-white">
   <!-- Titulo que declaramos luego en el formulario form.components-->
-  <div class="card-header">{{titulo}}
+  <div class="card-header">
     <div class="card-body">
       <!-- Directiva Submit y metodo crado en componentes-->
       <form #usuarioForm= "ngForm">
@@ -29,10 +29,11 @@
           </div>
         </div>
 
+
         <div class="form-group row">
           <label for="usuario" class="col-form-label col-sm-2"> Usuario</label>
           <div class="" class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="usuario.usuario" name= "nombre" required minlength="4" #nombre = "ngModel">
+            <input type="text" class="form-control" [(ngModel)]="usuario.usuario" name= "usuario" required minlength="4" #nombre = "ngModel">
             <div class="alert alert-danger" *ngIf="nombre.invalid &&(nombre.dirty || nombre.touched)"> <!-- -->
               <div *ngIf = "nombre.errors?.['required']">
                El campo usuario es obligatorio
@@ -96,6 +97,13 @@
           </div>
         </div>
 
+         <div class="form-check">
+           <input class="form-check-input is-invalid" type="checkbox" [(ngModel)]= "usuario.activo" name= "activo" aria-describedby="invalidCheck3Feedback">
+           <label class="form-check-label" for="invalidCheck3">
+             Activar o desactivar usuario
+           </label>
+         </div>
+
         <!--Boton CRUD Crear -->
         <div class="form-group row">
           <div class="col-sm-6">                            <!-- Condicion. Si no existe lo creamos y sino lo modificamos. MISMO FORMULARIO != FUNCION-->
@@ -103,11 +111,10 @@
             <ng-template #elseBlock>
               <button class= "btn btn-primary" role="button" (click) = 'update()' [disabled]= "!usuarioForm.form.valid" >Modificar Usuario</button>
             </ng-template>
-
           </div>
         </div>
 
       </form>
-        </div>
     </div>
   </div>
+</div>

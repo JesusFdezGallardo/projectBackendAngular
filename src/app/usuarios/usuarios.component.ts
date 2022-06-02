@@ -23,10 +23,10 @@ export class UsuariosComponent implements OnInit {
       //Argumentos del observador
       usuarios => this.alumnos = usuarios
       );
-      this.usuarioService.getUsuarios().subscribe(
+    this.usuarioService.getUsuarios().subscribe(
         //Argumentos del observador
-        usuarios => this.usuarios = usuarios
-        );
+      usuarios => this.usuarios = usuarios
+      );
     }
     //Usamos evento click para conseguir el idUsuario
     delete(usuario: Usuario): void{

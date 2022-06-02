@@ -25,7 +25,7 @@
         <th>Detalles</th>
         <th>Nombre</th>
         <th>Apellido</th>
-        <!--<th>Pass</th>-->
+        <th>Activo</th>
         <th>Email</th>
         <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Operaciones</th>
         <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Rol</th>
@@ -39,7 +39,7 @@
         </td>
         <td>{{usuario.nombre}}</td>
         <td>{{usuario.apellido}}</td>
-        <!--<td>{{usuario.pass}}</td>-->
+        <td>{{usuario.activo}}</td>
         <td>{{usuario.correoElectronico}}</td>
         <td *ngIf= "authService.hasRole('ROLE_ADMIN')">                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
           <button class=" btn btn-primary btn-sm mx-2 " type="button" name="editar" [routerLink]= "['/usuarios/form', usuario.idUsuario]">Editar</button>
@@ -56,7 +56,6 @@
         <th>Detalles</th>
         <th>Nombre</th>
         <th>Apellido</th>
-        <!--<th>Pass</th>-->
         <th>Email</th>
         <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Operaciones</th>
         <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Rol</th>
@@ -70,13 +69,7 @@
         </td>
         <td>{{usuario.nombre}}</td>
         <td>{{usuario.apellido}}</td>
-        <!--<td>{{usuario.pass}}</td>-->
         <td>{{usuario.correoElectronico}}</td>
-        <td *ngIf= "authService.hasRole('ROLE_ADMIN')">                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
-          <button class=" btn btn-primary btn-sm mx-2 " type="button" name="editar" [routerLink]= "['/usuarios/form', usuario.idUsuario]">Editar</button>
-          <button class=" btn btn-danger btn-sm" type="button" name="eliminar" (click) = "delete(usuario)">Eliminar</button>
-        </td>
-        <td *ngIf= "authService.hasRole('ROLE_ADMIN')"> {{usuario.roles[0].nombre}} </td>
     </tbody>
   </table>
 

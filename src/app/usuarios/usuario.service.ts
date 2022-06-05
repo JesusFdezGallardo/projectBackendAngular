@@ -118,6 +118,19 @@ export class UsuarioService {
       })
     )
   }
+//No borro de la base de datos, desactivo el usuario
+  eliminar(id:number): Observable<Usuario>{
+    return this.http.put<Usuario>(`${this.urlEndPoint}/delete/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
+      catchError(e => {
+        if(this.isNoAutorizado(e)){
+          return throwError(e);
+        }
+        console.error(e.error.mensaje);
+        Swal.fire(e.error.mensaje, e.error.error, 'error')
+        return throwError(e);
+      })
+    )
+  }
 
   desactivar(id:number): Observable<Usuario>{
     return this.http.put<Usuario>(`${this.urlEndPointBorrar}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(

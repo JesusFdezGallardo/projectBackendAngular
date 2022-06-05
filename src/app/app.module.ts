@@ -15,6 +15,7 @@ import { DetalleComponent } from './usuarios/detalle/detalle.component';
 import { PracticasComponent } from './lista-asignaturas/practicas/practicas.component';
 import { AsignaturaComponent } from './asignaturas/asignatura.component';
 import { AsignaturaService } from './asignaturas/services/asignatura.service';
+import {PracticaService} from './asignaturas/services/practica.service';
 import { ListaAsignaturasComponent } from './lista-asignaturas/lista-asignaturas.component';
 import { FormularioAsignaturaComponent } from './lista-asignaturas/formulario-asignatura/formulario-asignatura.component';
 import { LoginComponent } from './usuarios/login/login.component';
@@ -24,6 +25,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormPracticasComponent } from './lista-asignaturas/form-practicas.component';
 
 //Constante con el arreglo de las rutas
 const routes: Routes = [
@@ -40,6 +42,8 @@ const routes: Routes = [
   {path: 'asignaturas/form/:asignaturaId', component: FormularioAsignaturaComponent},
   {path: 'asignaturas/ver/:id', component: DetalleAsignaturaComponent},
   {path: 'asignaturas/:id', component: AsignaturaComponent},
+  {path: 'practicas/form', component: FormPracticasComponent},
+  {path: 'practicas/form/:asignaturaId', component: FormPracticasComponent},
   {path: 'login', component: LoginComponent }
 ];
 
@@ -57,6 +61,7 @@ const routes: Routes = [
     FormularioAsignaturaComponent,
     LoginComponent,
     DetalleAsignaturaComponent,
+    FormPracticasComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +71,7 @@ const routes: Routes = [
     ReactiveFormsModule, MatAutocompleteModule, MatInputModule, MatFormFieldModule
 
   ],
-  providers: [UsuarioService, AsignaturaService, AuthService],//Cargamos clases de servicio
+  providers: [UsuarioService, AsignaturaService, AuthService, PracticaService],//Cargamos clases de servicio
   bootstrap: [AppComponent]
 })
 export class AppModule { }

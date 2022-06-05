@@ -13,7 +13,6 @@ import {HttpHeaders} from '@angular/common/http';
 export class AsignaturaComponent implements OnInit {
 
   asignatura: Asignatura;
-  titulo: string= "Asignatura";
 
   public httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 

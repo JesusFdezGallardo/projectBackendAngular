@@ -1,0 +1,37 @@
+<div class="card bg-ligth"  *ngIf="asignatura">
+  <div class="card-header"> Crear Practica
+    <div class="card-body">
+
+    <form #asignaturaForm= "ngForm">
+      <div class="form-group row">
+        <div class="col-sm-6">                            <!-- Condicion. Si no existe lo creamos y sino lo modificamos. MISMO FORMULARIO != FUNCION-->
+            <button class= "btn btn-primary" role="button" (click)= 'create()'[disabled]= "!asignaturaForm.form.valid">Crear Practica</button>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="" class="col-form-label col-sm-2">Titulo de la practica</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="practica.titulo" name= "nombre" required #nombre= "ngModel">
+        </div>
+        <p></p>
+        <div class="alert alert-danger" *ngIf="nombre.invalid && nombre.touched">
+          El campo titulo es obligatorio
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="" class="col-form-label col-sm-2">Comentario de la practica</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="practica.comentario" name= "comentario" required #comentario= "ngModel">
+        </div>
+        <p></p>
+        <div class="alert alert-danger" *ngIf="comentario.invalid && comentario.touched">
+          El campo titulo es obligatorio
+        </div>
+      </div>
+
+    </form>
+    </div>
+  </div>
+</div>

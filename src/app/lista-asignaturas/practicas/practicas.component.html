@@ -1,5 +1,5 @@
 <div class="card bg-ligth" *ngIf="usuario">
-  <div class="card-header">{{usuario.nombre}}</div>
+  <div class="card-header">{{usuario.nombre}}  {{usuario.apellido}}  </div>
   <div class="card-body">
     <table class="table table-bordered table-striped text-center">
       <thead>
@@ -10,8 +10,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let practica of usuario.listaPracticas">
-          <td>{{asignatura.nombre}}</td>
+        <tr *ngFor="let practica of listaPracticas">
+          <td>{{practica.asignatura.nombre}}</td>
           <td>{{practica.titulo}}</td>
           <td>{{practica.comentario}}</td>
           <!-- <td><button type="button" name="button" class="btn btn-danger btn-sm" (click)= "delete(asignatura)">Eliminar</button></td>

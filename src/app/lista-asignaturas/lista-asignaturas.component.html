@@ -1,12 +1,14 @@
-<div class="card text-black">
+  <div class="card text-black">
   <div class="card-header">Asignaturas</div>
   <div class="card-body">
     <h5 class="card-title">Listado de Asignaturas</h5>
 
     <div *ngIf= "authService.hasRole('ROLE_ADMIN')" class="my-2 text-left">
-    <button class="btn btn-rounded btn-primary" type="button" [routerLink] = "['/asignaturas/form']">Crear Asignatura</button>
+      <button *ngIf= "authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded btn-primary my-2 text-left" type="button" [routerLink] = "['/asignaturas/form']">Crear Asignatura</button>
     </div>
-
+    <div *ngIf= "authService.hasRole('ROLE_ALUMNO')" class="my-2 text-left">
+          <button [routerLink]= "['/usuarios/practicas', usuarioLogeado.idUsuario]" class= "btn btn-secondary">Ver actividades</button>
+    </div>
     <!-- TABLA DE USUARIO ADMIN y Profesor-->
     <table class="table table-bordered table-striped text-center" *ngIf="listaAsignaturas?.length>0 && authService.hasRole('ROLE_ADMIN') || authService.hasRole('ROLE_PROFESOR')">
       <thead>
@@ -21,14 +23,11 @@
         <tr *ngFor="let asignatura of listaAsignaturas">
           <td>{{asignatura.nombre}}</td>
           <td>{{asignatura.profesor.nombre}} {{asignatura.profesor.apellido}}</td>
-          <!--
-          <td><button type="button" name="button" class="btn btn-danger btn-sm" (click)= "delete(asignatura)">Eliminar</button></td>
-          <td><button class= "btn btn-primary btn-sm" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver Alumnos</button></td>
-          -->
           <td *ngIf= "authService.hasRole('ROLE_ADMIN')">                                      <!--La ruta tiene dos argumentos, la ruta de usuarios + usuarioid -->
             <button class=" btn btn-primary btn-sm mx-2 " type="button" name="editar" [routerLink]= "['/asignaturas/form', asignatura.idAsignatura]">Editar</button>
             <button type="button" name="button" class="btn btn-danger btn-sm" (click)= "delete(asignatura)">Eliminar</button>
-            <td><button class= "btn btn-primary btn-sm" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver Alumnos</button>
+            <td><button class= "btn btn-primary btn-sm mx-2" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver Alumnos</button>
+                <button *ngIf= "authService.hasRole('ROLE_ADMIN') || authService.hasRole('ROLE_PROFESOR')" class="btn btn-primary btn-sm" type="button" [routerLink] = "['/practicas/form', asignatura.idAsignatura]">Crear Practica</button>    <!-- Botón crear prácticas -->
           </td>
       </tbody>
     </table>
@@ -42,7 +41,7 @@
           <th>Profesor</th>
           <th *ngIf= "authService.hasRole('ROLE_ADMIN')">Operaciones</th>
           <th>Alumnos de esta asignatura</th>
-          <th>Actividades de la asignatura</th>
+          <!-- <th>Actividades de la asignatura</th> -->
         </tr>
       </thead>
       <tbody>
@@ -53,9 +52,6 @@
           <td>{{asignatura.nombre}}</td>
           <td>{{asignatura.profesor.nombre}} {{asignatura.profesor.apellido}}</td>
           <td><button class= "btn btn-primary btn-sm" type="button" [routerLink]= "['/asignaturas/ver', asignatura.idAsignatura]">Ver Alumnos</button>
-          <td type="button" >
-              <button [routerLink]= "['/usuarios/practicas', asignatura.idAsignatura]" class= "btn btn-secondary">Ver actividades</button>
-          </td>
       </tbody>
     </table>
   </div>

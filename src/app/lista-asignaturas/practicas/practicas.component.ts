@@ -17,6 +17,7 @@ export class PracticasComponent implements OnInit {
   public usuario: Usuario;
   public asignatura: Asignatura;
   public listaPracticas: Practica[];
+  private id: number;
 
   constructor(private usuarioService: UsuarioService,
   public authService: AuthService,
@@ -28,19 +29,22 @@ export class PracticasComponent implements OnInit {
     this.usuarioService.getUsuarioByNombre(this.authService.usuario.usuario).subscribe(
       usuario => this.usuario = usuario
     );
-
+/*
     this.activatedRoute.paramMap.subscribe(params => {
       let id = +params.get('idAsignatura');
       this.asignaturaService.getAsignatura(id).subscribe(asignatura =>{
         this.asignatura = asignatura;
       })
+          });
+*/
+    this.practicaService.getPracticas().subscribe(
+      usuarios => this.listaPracticas = usuarios
+    );
 
-      this.cargarPracticas();
-    });
   }
 
   cargarPracticas(): void {
-        this.practicaService.getPracticas(1).subscribe(
+        this.practicaService.getPracticas().subscribe(
           usuarios => this.listaPracticas = usuarios
         );
   }

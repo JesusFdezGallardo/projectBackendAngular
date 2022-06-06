@@ -15,7 +15,7 @@ export class UsuariosComponent implements OnInit {
   roles: Rol[];
   alumnos: Usuario[];
   //constructor para cargar las clases
-  constructor( private  usuarioService : UsuarioService,
+  constructor(private usuarioService : UsuarioService,
               public authService: AuthService) { }
   //Damos valor de inicio a los objetos creados antes
   ngOnInit(): void {

@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   titulo:string = "Iniciar sesion";
   usuario: Usuario;
 
-  constructor( private authService: AuthService, private router:Router) {
+  constructor( public authService: AuthService, private router:Router) {
     this.usuario = new Usuario();
   }
 

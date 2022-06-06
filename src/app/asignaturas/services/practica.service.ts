@@ -6,6 +6,8 @@ import Swal from 'sweetalert2';
 import {Observable, throwError} from 'rxjs';
 import {Practica} from '../models/practica';
 import {map, catchError, tap} from 'rxjs/operators';
+import {AuthService} from '../../usuarios/login/auth.service';
+import {Usuario} from '../../usuarios/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +17,10 @@ export class PracticaService {
   private urlEndPoint: string = "http://localhost:8080/api/practicas";
   private urlEndPointPracticas: string = "http://localhost:8080/api/usuarios/practicas";
   public httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+  private usuarioLogeado: Usuario;
 
   constructor(private http: HttpClient, private usuarioService: UsuarioService,
-  private router: Router) {
+  private router: Router, public authService: AuthService,) {
 
    }
 
@@ -39,7 +42,11 @@ export class PracticaService {
     );
    }
 
-   getPracticas(id: number): Observable<any>{
-     return this.http.get<Practica[]>(`${this.urlEndPointPracticas}/${id}`,  {headers: this.usuarioService.agregarAuthorizationHeader()}).pipe();
+   getPracticas(): Observable<any>{
+     this.usuarioService.getUsuarioByNombre(this.authService.usuario.usuario).subscribe(
+       usuario => this.usuarioLogeado = usuario
+     );
+
+     return this.http.get<Practica[]>(`${this.urlEndPointPracticas}/${this.usuarioLogeado.idUsuario}`,  {headers: this.usuarioService.agregarAuthorizationHeader()}).pipe();
     }
 }

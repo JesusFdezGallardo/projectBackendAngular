@@ -15,7 +15,7 @@ import {URL_BACKEND} from '../rutas/rutas';
 })
 export class UsuarioService {
   private urlEndPoint: string = URL_BACKEND + '/api/usuarios';
-  private urlEndPointProfes: string = URL_BACKEND + 'api/usuarios/profesores';
+  private urlEndPointProfes: string = URL_BACKEND + '/api/usuarios/profesores';
   private urlEndpointAlumnos: string = URL_BACKEND + '/api/usuarios/alumnos';
   private urlEndPointFiltrar: string = URL_BACKEND + '/api/usuarios/filtrar-usuarios';
   private urlEndPointUser: string = URL_BACKEND + '/api/user';
@@ -36,8 +36,8 @@ export class UsuarioService {
 
   public httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
-  constructor(private http:HttpClient, private router: Router
-            , private autheService: AuthService) { }
+  constructor(private http:HttpClient, private router: Router,
+    private autheService: AuthService) { }
 
   //Metodo para autorizar acciones
   public agregarAuthorizationHeader(){

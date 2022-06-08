@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "app-angular-d35f9",
+    "Angular": "app-angular-d35f9"
+  },
+  "targets": {}
+}

@@ -7,13 +7,14 @@ import {map, catchError, tap} from 'rxjs/operators';
 import { UsuarioService } from '../../usuarios/usuario.service';
 import {Router } from '@angular/router';
 import {Usuario} from '../../usuarios/usuario';
+import {URL_BACKEND} from '../../rutas/rutas';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AsignaturaService {
 
-  private urlEndPoint: string = "http://localhost:8080/api/asignaturas";
+  private urlEndPoint: string = URL_BACKEND + '/api/asignaturas';
   public httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient, private usuarioService: UsuarioService,

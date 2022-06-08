@@ -8,14 +8,15 @@ import {Practica} from '../models/practica';
 import {map, catchError, tap} from 'rxjs/operators';
 import {AuthService} from '../../usuarios/login/auth.service';
 import {Usuario} from '../../usuarios/usuario';
+import {URL_BACKEND} from '../../rutas/rutas';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PracticaService {
 
-  private urlEndPoint: string = "http://localhost:8080/api/practicas";
-  private urlEndPointPracticas: string = "http://localhost:8080/api/usuarios/practicas";
+  private urlEndPoint: string = URL_BACKEND + '/api/practicas';
+  private urlEndPointPracticas: string = URL_BACKEND + '/api/usuarios/practicas';
   public httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
   private usuarioLogeado: Usuario;
 

@@ -8,17 +8,18 @@ import {map, catchError, tap} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {Router } from '@angular/router';
 import {AuthService} from '../usuarios/login/auth.service';
+import {URL_BACKEND} from '../rutas/rutas';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  private urlEndPoint: string = "http://localhost:8080/api/usuarios";
-  private urlEndPointProfes: string = "http://localhost:8080/api/usuarios/profesores";
-  private urlEndpointAlumnos: string = "http://localhost:8080/api/usuarios/alumnos";
-  private urlEndPointFiltrar: string = "http://localhost:8080/api/usuarios/filtrar-usuarios";
-  private urlEndPointUser: string = "http://localhost:8080/api/user";
-  private urlEndPointBorrar: string ='http://localhost:8080/api/usuarios/delete';
+  private urlEndPoint: string = URL_BACKEND + '/api/usuarios';
+  private urlEndPointProfes: string = URL_BACKEND + 'api/usuarios/profesores';
+  private urlEndpointAlumnos: string = URL_BACKEND + '/api/usuarios/alumnos';
+  private urlEndPointFiltrar: string = URL_BACKEND + '/api/usuarios/filtrar-usuarios';
+  private urlEndPointUser: string = URL_BACKEND + '/api/user';
+  private urlEndPointBorrar: string =URL_BACKEND + '/api/usuarios/delete';
 
   public isNoAutorizado(e): boolean{
     if(e.status==401){

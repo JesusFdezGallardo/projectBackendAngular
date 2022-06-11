@@ -133,18 +133,6 @@ export class UsuarioService {
     )
   }
 
-  desactivar(id:number): Observable<Usuario>{
-    return this.http.put<Usuario>(`${this.urlEndPointBorrar}/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
-      catchError(e => {
-        if(this.isNoAutorizado(e)){
-          return throwError(e);
-        }
-        console.error(e.error.mensaje);
-        Swal.fire(e.error.mensaje, e.error.error, 'error')
-        return throwError(e);
-      })
-    )
-  }
 
   getRol(): Observable<Rol[]>{
     return this.http.get<Rol[]>(this.urlEndPoint+ '/roles', {headers: this.agregarAuthorizationHeader()}).pipe(
